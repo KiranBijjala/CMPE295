@@ -56,49 +56,41 @@ def all_possible_states(state_dict,state_list):
                 possible_states.append(state)
     return possible_states
 
-state_list = {"MaxClients":0,"KeepAliveTimeOut":1,"MinSparseServers":2,"MaxSparseServers":3,"MaxThreads":4,"SessionTimeout":5,"MinSpareThreads":6,"MaxSpareThreads":7}
-ranges_list = [[50,600],[1,21],[5,85],[15,95],[50,600],[1,35],[5,85],[15,95]]
-default_val_list = [[49,15,5,15,200,30,5,50],[50,0,5,15,200,30,5,50],[50,15,4,15,200,30,5,50],[50,15,5,14,200,30,5,50],[50,15,5,15,49,30,5,50],[50,15,5,15,200,0,5,50],[50,15,5,15,200,30,4,50],[50,15,5,15,200,30,5,14]]
-final_dict = {}
-for key in state_list.keys():
-    index = state_list.get(key)
-    final_dict.update({key:return_all_possible_states(index,ranges_list[index],default_val_list[index],key)})
+state_list = {"MaxRequestWorkers":0,"KeepAliveTimeOut":1,"MinSpareThreads":2,"MaxSpareThreads":3,"ThreadsPerChild":4,"MaxConnectionsPerChild":5,"ServerLimit":6,"StartServers":7}
+# ranges_list = [[50,600],[1,21],[5,85],[15,95],[50,600],[1,35],[5,85],[15,95]]
+# default_val_list = [[49,15,5,15,200,30,5,50],[50,0,5,15,200,30,5,50],[50,15,4,15,200,30,5,50],[50,15,5,14,200,30,5,50],[50,15,5,15,49,30,5,50],[50,15,5,15,200,0,5,50],[50,15,5,15,200,30,4,50],[50,15,5,15,200,30,5,14]]
+# final_dict = {}
+# for key in state_list.keys():
+#     index = state_list.get(key)
+#     final_dict.update({key:return_all_possible_states(index,ranges_list[index],default_val_list[index],key)})
 
 
-state_space = np.asarray(all_possible_states(final_dict,state_list))
+# state_space = np.asarray(all_possible_states(final_dict,state_list))
 # state_space = state_space.reshape(1475,8,1)
-action_space = action_space = [["MaxClients",[(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+action_space = action_space = [["MaxRequestWorkers",[(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
                 ["KeepAliveTimeOut",[(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MinSparseServers",[(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxSparseServers",[(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["SessionTimeout",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0)]],
-                ["MinSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0)]],
-                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0)]],
-                ["MaxClients",[(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MinSpareThreads",[(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["ThreadsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxConnectionsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0),(0,0,0)]],
+                ["ServerLimit",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0),(0,0,0)]],
+                ["StartServers",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(1,0,0)]],
+                ["MaxRequestWorkers",[(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
                 ["KeepAliveTimeOut",[(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MinSparseServers",[(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxSparseServers",[(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["SessionTimeout",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0)]],
-                ["MinSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0)]],
-                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0)]],
-                ["MaxClients",[(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MinSpareThreads",[(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["ThreadsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxConnectionsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0),(0,0,0)]],
+                ["ServerLimit",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0),(0,0,0)]],
+                ["StartServers",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,1,0)]],
+                ["MaxRequestWorkers",[(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
                 ["KeepAliveTimeOut",[(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MinSparseServers",[(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxSparseServers",[(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
-                ["MaxThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0)]],
-                ["SessionTimeout",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0)]],
-                ["MinSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0)]],
-                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1)]]]
-
-# all_states = all_possible_states(final_dict,state_list)
-# all_states.append([150,15,5,15,200,30,5,50])
-# rewards1 = np.random.uniform(1,7,475)
-# rewards2 = np.random.uniform(7,100,1000)
-# virtual_rewards = list(rewards1)
-# virtual_rewards.extend(list(rewards2))
-# virtual_rewards.append(7.01)
+                ["MinSpareThreads",[(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxSpareThreads",[(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0),(0,0,0)]],
+                ["ThreadsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0),(0,0,0)]],
+                ["MaxConnectionsPerChild",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0),(0,0,0)]],
+                ["ServerLimit",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1),(0,0,0)]],
+                ["StartServers",[(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,1)]]]
 
 
 #-----------------------------------------------------------------------------------------------------------
@@ -149,34 +141,63 @@ class ModifiedTensorBoard(TensorBoard):
 # CREATING THE APACHE ENVIRONMENT
 #-----------------------------------------------------------------------------------------------------------
 class Apache_environment:
+
+    #Getting the default performance using the initial values
+    os.system("ab -n 1000 -c 100 -r https://54.191.74.174/ >/home/output.txt 2>&1")
+    search = open("/home/output.txt")
+    string = "Requests per second:"
+    line = ""
+    for line in search.readlines():
+        if string in line:
+            req_per_second = line
+            break 
+    self.def_perf = req_per_second
+
     def reset(self):
-        return [150,15,5,15,200,30,5,50]
+        return [256,2,128,192,64,5000,4,2]
 
     def step(self,action,current_state):
         parameter = action_space[action][0]
         param_index = state_list.get(parameter)
         current_state[param_index] += 1
         new_state = current_state
-        # reward = self.get_simulated_reward(current_state)
-        reward = self.get_simulated_reward()
+        # reward = self.get_simulated_reward()
+        reward = self.get_reward(current_state)
         return new_state, reward
 
     def get_simulated_reward(self):
         def_perf = 7.01
         # reward = virtual_rewards[all_states.index(cur_state)]
-        reward = np.random.uniform(1,100,1)[0]
+        reward = np.random.randint(10,100)
         return reward - def_perf
 
     def get_reward(self,cur_state):
-        def_perf = 7.01
-        os.system("ab -n 100 -c 10 https://www.apache.org/ >/Users/jayaprakashreddydumpa/Desktop/295/output.txt 2>&1")
-        search = open("/Users/jayaprakashreddydumpa/Desktop/295/output.txt")
+        value_dict = {MaxRequestWorkers:cur_state[0],
+        KeepAliveTimeOut : cur_state[1],
+        MinSpareThreads : cur_state[2],
+        MaxSpareThreads : cur_state[3],
+        ThreadsPerChild : cur_state[4],
+        MaxConnectionsPerChild : cur_state[5],
+        ServerLimit : cur_state[6],
+        StartServers : cur_state[7]}
+
+        line_numbers = [23,25,20,21,22,24,18,19]
+        i = 0
+        for key,value in value_dict:
+            command = "sed '" + str(line_numbers[i]) + "s/" + str(key) + "*/" + str(key) + "    " + str(value) + "/'  /opt/bitnami/apache2/conf/bitnami/httpd.conf"
+            os.system(command)
+            i += 1 
+
+        os.system("sudo /opt/bitnami/ctlscript.sh restart apache")
+        os.system("ab -n 1000 -c 100 -r https://54.191.74.174/ >/home/output.txt 2>&1")
+        search = open("/home/output.txt")
         string = "Requests per second:"
         for line in search.readlines():
             if string in line:
                 req_per_second = line
                 break 
-        return float(req_per_second) - def_perf
+            
+        return float(req_per_second) - self.def_perf
 
 #-----------------------------------------------------------------------------------------------------------
 #DEFINING THE DEEP-Q NETWORK AGENT
@@ -308,11 +329,11 @@ agent = DQNAgent()
 env = Apache_environment()
 # Iterate over episodes
 for episode in tqdm(range(1, EPISODES + 1), ascii=True, unit='episodes'):
-    # ep_rewards = []
     # Update tensorboard step every episode
     agent.tensorboard.step = episode
 
     # Restarting episode - reset episode reward and step number
+    # episode_reward = 0
     episode_reward = []
     step = 1
 
@@ -348,27 +369,10 @@ for episode in tqdm(range(1, EPISODES + 1), ascii=True, unit='episodes'):
 
     min_reward = min(episode_reward)
     max_reward = max(episode_reward)
-    print("max Reward : " + max_reward)
-    print("min reward: " + min_reward)
-    print(episode_reward)
     average_reward = sum(episode_reward)/1500
     agent.tensorboard.update_stats(reward_avg=average_reward, reward_min=min_reward, reward_max=max_reward, epsilon=epsilon)
-
     if min_reward >= MIN_REWARD:
             agent.model.save(f'models/{MODEL_NAME}__{max_reward:_>7.2f}max_{average_reward:_>7.2f}avg_{min_reward:_>7.2f}min__{int(time.time())}.model')
-
-
-    # Append episode reward to a list and log stats (every given number of episodes)
-    # ep_rewards.append(episode_reward)
-    # if not episode % AGGREGATE_STATS_EVERY or episode == 1:
-    #     average_reward = sum(ep_rewards[-AGGREGATE_STATS_EVERY:])/len(ep_rewards[-AGGREGATE_STATS_EVERY:])
-    #     min_reward = min(ep_rewards[-AGGREGATE_STATS_EVERY:])
-    #     max_reward = max(ep_rewards[-AGGREGATE_STATS_EVERY:])
-    #     agent.tensorboard.update_stats(reward_avg=average_reward, reward_min=min_reward, reward_max=max_reward, epsilon=epsilon)
-
-    #     # Save model, but only when min reward is greater or equal a set value
-    #     if min_reward >= MIN_REWARD:
-    #         agent.model.save(f'models/{MODEL_NAME}__{max_reward:_>7.2f}max_{average_reward:_>7.2f}avg_{min_reward:_>7.2f}min__{int(time.time())}.model')
 
     # Decay epsilon
     if epsilon > MIN_EPSILON:
